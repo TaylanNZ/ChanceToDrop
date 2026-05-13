@@ -1,12 +1,18 @@
 ###################
-# VERSION 1.00.00 #
+# VERSION 1.00.01 #
 ###################
-Version = "1.00.00"
-upDate = "10 May 2026"
+Version = "1.00.01"
+upDate = "13 May 2026"
 versionString = "Version " + Version + " -  Last Updated " + upDate
 
 from tkinter import *
 from fractions import Fraction
+from os import path
+import sys
+
+def resource_path(relative_path):
+    base_path = getattr(sys, '_MEIPASS', path.dirname(path.abspath(__file__)))
+    return path.join(base_path, relative_path)
 
 def calculate(*args):
     try:
@@ -21,6 +27,8 @@ def calculate(*args):
     except ValueError:
         # Handle non-numeric input
         result_label.config(text="Result: Invalid Input")
+
+
 
 ########################
 # VARIABLE DEFINITIONS #
@@ -55,12 +63,14 @@ mainCornerY = (screenHeight - mainHeight) / 2
 mainWindow = Tk()
 mainWindow.geometry('%dx%d+%d+%d' % (mainWidth, mainHeight, mainCornerX, mainCornerY))
 mainWindow.resizable(False, False)
-mainWindow.title("Chance to Kill")
+mainWindow.title("Chance to Drop")
+icon = PhotoImage(file=resource_path('Icon.png'))
+mainWindow.iconphoto(False, icon)
 
 mainLabelInputX = Label(mainWindow, text="Input chance of drop in format a/b")
 mainTextChanceX = Text(mainWindow, width=10, height=1)
 
-mainLabelInputY = Label(mainWindow, text="Input number of kills performed")
+mainLabelInputY = Label(mainWindow, text="Input number of tries performed")
 mainTextKillsY = Text(mainWindow, width=10, height=1)
 
 mainLabelInputX.pack()
