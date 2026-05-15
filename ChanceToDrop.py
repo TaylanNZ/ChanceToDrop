@@ -1,12 +1,11 @@
 ###################
-# VERSION 1.00.01 #
+# VERSION 1.01.00 #
 ###################
-Version = "1.00.01"
-upDate = "13 May 2026"
+Version = "1.01.00"
+upDate = "15 May 2026"
 versionString = "Version " + Version + " -  Last Updated " + upDate
 
 from tkinter import *
-from fractions import Fraction
 from os import path
 import sys
 
@@ -18,7 +17,9 @@ def calculate(*args):
     try:
         # Retrieve input and calculate
 
-        chanceFraction = float(Fraction(mainTextChanceX.get("1.0",'end-1c')))
+        userinput = mainTextChanceX.get("1.0",'end-1c')
+        numerator, denominator = userinput.split('/')
+        chanceFraction = float(numerator) / float(denominator)
         lessChance = (1 - chanceFraction)
         killsPerformed = int((mainTextKillsY.get("1.0",'end-1c')))
         result = round(100*(1 - lessChance**killsPerformed), 2)
